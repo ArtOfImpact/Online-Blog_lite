@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document | <%= title %>
+    </title>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+
+        header {
+            background-color: cadetblue;
+            display: flex;
+            height: 100px;
+            align-items: center;
+            justify-content: end;
+            padding-right: 50px;
+            font-size: 26px;
+        }
+
+        .menu {
+            padding-right: 15px;
+        }
+
+        .wrapper {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            color: burlywood;
+            font-size: 22px;
+            background-color: brown;
+            flex-direction: column;
+            padding-left: 50px;
+            padding-top: 50px;
+        }
+
+        .posts {
+            padding: 15px;
+            border: 1px solid burlywood;
+            border-radius: 15px;
+            margin-top: 15px;
+            width: 700px;
+        }
+
+        .posts__text {
+            padding: 20px 0px;
+        }
+
+        .posts__description {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include('./partials/nav.ejs') %>
+        <div class="wrapper">
+            <span>POSTS :</span>
+            <% if (posts.length) { %>
+                <% posts.forEach(({ id,text, title,createdAt,author })=> { %>
+                    <div class="posts">
+                        <a href="/post/<%= id %>">
+                            <div class="posts__title">
+                                <%= title %>
+                            </div>
+                        </a>
+                        <button data-id="<%= id %>">X</button>
+                        <div class="posts__text"><span>
+                                <%= text %>
+                            </span></div>
+                        <div class="posts__description">
+                            <span>
+                                <%= createdAt.toLocaleDateString() || 'Нет даты' %>
+                            </span>
+                            <span>
+                                <%= author %>
+                            </span>
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } %>
+        </div>
+        <script>
+            document.addEventListener("click", (e) => {
+                const id = e.target?.dataset?.id || null;
+                console.log(id)
+                if (id) {
+                    fetch(`/posts/${id}`, {
+                        method: 'DELETE',
+                    }).then(() => {
+                        window.location.reload()
+                    }).catch((error) => {
+                        console.log(error)
+                    })
+                }
+            })
+        </script>
+        <!-- Скрипт который повешен на документ и при клике на него проверяет есть ли data-id при наличии отпровляет запрос на удлаение -->
+</body>
+
+</html>

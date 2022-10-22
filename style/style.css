@@ -1,0 +1,27 @@
+        body {
+            margin: 0;
+        }
+
+        header {
+            background-color: cadetblue;
+            display: flex;
+            height: 100px;
+            align-items: center;
+            justify-content: end;
+            padding-right: 50px;
+            font-size: 26px;
+        }
+
+        .menu {
+            padding-right: 15px;
+        }
+
+        .wrapper {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: burlywood;
+            font-size: 22px;
+            background-color: brown;
+        }
