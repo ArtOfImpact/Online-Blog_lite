@@ -1,20 +1,30 @@
 const express = require("express");
 // Импортируем express
+
 const Post = require("./module/post")
 const Contact = require("./module/contacts")
 // Шаблон постов и контактов 
+
 const methodOverride = require('method-override')
 // Мидл вар для редкотирования постов 
 
+require('dotenv').config()
+
 const createPath = require("./helpers/create-path")
+// Путь фала для вызова 
+
 const postRoutes = require("./routes/post-routes")
 // Из всех сапросов использующихся для роутинга мы сделали отделный модуль 
+
 const mongoose = require("mongoose")
-const db = "mongodb+srv://admin:738733@cluster0.csusu6s.mongodb.net/?retryWrites=true&w=majority"
+
+
 mongoose
-    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((res) => console.log("connected to DB"))
+    .catch((error) => console.log(error))
 // Подключаем mongoose
+
 
 const app = express();
 
@@ -25,8 +35,6 @@ const morgan = require('morgan');
 app.set("view engine", "ejs");
 
 // Подключаем формат ejs для динамически изменяемых данных в HTML
-
-const PORT = 3000;
 
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 
@@ -91,6 +99,6 @@ app.use((req, res) => {
 
 // Пример роутинга на express
 
-app.listen(PORT, (error) => {
+app.listen(process.env.PORT, (error) => {
     error ? console.log(error) : console.log("Port 3000")
 })
