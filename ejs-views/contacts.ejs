@@ -12,8 +12,19 @@
             margin: 0;
         }
 
+        a {
+            text-decoration: none;
+            color: burlywood;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        li {
+            padding-right: 25px;
+        }
+
         header {
-            background-color: cadetblue;
+            background-color: #477250;
             display: flex;
             height: 100px;
             align-items: center;
@@ -24,6 +35,13 @@
 
         .menu {
             padding-right: 15px;
+            transition: 1s;
+        }
+
+        .menu:hover {
+            scale: 1.2;
+            padding-right: 25px;
+            padding-left: 25px;
         }
 
         .wrapper {
@@ -40,15 +58,17 @@
 
 <body>
     <%- include('./partials/nav.ejs') %>
-        <% if (contacts.length) { %>
-            <% contacts.forEach(({ link, name })=> { %>
-                <li>
-                    <a href="<%= link %>">
-                        <%= name %>
-                    </a>
-                </li>
-                <% }) %>
-                    <% } %>
+        <div class="wrapper">
+            <% if (contacts.length) { %>
+                <% contacts.forEach(({ link, name })=> { %>
+                    <li>
+                        <a href="<%= link %>">
+                            <%= name %>
+                        </a>
+                    </li>
+                    <% }) %>
+                        <% } %>
+        </div>
 </body>
 
 </html>

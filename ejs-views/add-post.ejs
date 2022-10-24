@@ -12,7 +12,7 @@
         }
 
         header {
-            background-color: cadetblue;
+            background-color: #477250;
             display: flex;
             height: 100px;
             align-items: center;
@@ -23,6 +23,13 @@
 
         .menu {
             padding-right: 15px;
+            transition: 1s;
+        }
+
+        .menu:hover {
+            scale: 1.2;
+            padding-right: 25px;
+            padding-left: 25px;
         }
 
         .wrapper {
@@ -72,7 +79,9 @@
 
         a {
             text-decoration: none;
-            color: #fff;
+            color: burlywood;
+            font-size: 28px;
+            font-weight: 600;
         }
 
         form {
@@ -137,20 +146,20 @@
         <div class="wrapper">
             <form id="post-form" method="post" action="/add-post">
                 <div class="form-info">
-                    <label>Post Title
+                    <label>Тема
                         <input type="text" name="title">
                     </label>
-                    <label>Author
+                    <label>Автор
                         <input type="text" name="author">
                     </label>
                 </div>
                 <div class="form-text">
-                    <label>Post Text
+                    <label>Текст
                         <textarea name="text"></textarea>
                     </label>
                 </div>
                 <div class="form-button">
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Создать">
                 </div>
             </form>
         </div>

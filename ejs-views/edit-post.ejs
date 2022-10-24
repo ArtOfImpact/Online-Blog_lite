@@ -11,8 +11,15 @@
             margin: 0;
         }
 
+        a {
+            text-decoration: none;
+            color: burlywood;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
         header {
-            background-color: cadetblue;
+            background-color: #477250;
             display: flex;
             height: 100px;
             align-items: center;
@@ -23,6 +30,13 @@
 
         .menu {
             padding-right: 15px;
+            transition: 1s;
+        }
+
+        .menu:hover {
+            scale: 1.2;
+            padding-right: 25px;
+            padding-left: 25px;
         }
 
         .wrapper {
@@ -68,11 +82,6 @@
 
         ul {
             padding: 0;
-        }
-
-        a {
-            text-decoration: none;
-            color: #fff;
         }
 
         form {
@@ -137,20 +146,20 @@
         <div class="wrapper">
             <form id="post-form" method="post" action="/edit/<%= post.id %>?_method=PUT">
                 <div class="form-info">
-                    <label>Post Title
+                    <label>Тема
                         <input type="text" name="title" value="<%= post.title %>">
                     </label>
-                    <label>Author
+                    <label>Автор
                         <input type="text" name="author" value="<%= post.author %>">
                     </label>
                 </div>
                 <div class="form-text">
-                    <label>Post Text
+                    <label>Текст
                         <textarea name="text"><%= post.text %></textarea>
                     </label>
                 </div>
                 <div class="form-button">
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Создать">
                 </div>
             </form>
         </div>

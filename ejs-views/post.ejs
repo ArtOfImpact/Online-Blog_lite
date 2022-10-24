@@ -12,8 +12,15 @@
             margin: 0;
         }
 
+        a {
+            text-decoration: none;
+            color: burlywood;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
         header {
-            background-color: cadetblue;
+            background-color: #477250;
             display: flex;
             height: 100px;
             align-items: center;
@@ -24,6 +31,13 @@
 
         .menu {
             padding-right: 15px;
+            transition: 1s;
+        }
+
+        .menu:hover {
+            scale: 1.2;
+            padding-right: 25px;
+            padding-left: 25px;
         }
 
         .wrapper {
@@ -43,13 +57,38 @@
             border: 1px solid burlywood;
             border-radius: 15px;
             margin-top: 15px;
+            width: 700px;
         }
 
-        .posts__text {
+        .posts-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .posts-title__text {
             padding: 20px 0px;
         }
 
-        .posts__description {
+        .posts-title__edit {
+            height: 25px;
+            width: 105px;
+            background-color: #02020200;
+            border: 1px solid burlywood;
+            color: wheat;
+            cursor: pointer;
+        }
+
+        .posts-title__button {
+            height: 25px;
+            width: 25px;
+            background-color: #02020200;
+            border: 1px solid burlywood;
+            color: wheat;
+            cursor: pointer;
+        }
+
+        .posts-description {
             display: flex;
             justify-content: space-between;
         }
@@ -60,21 +99,25 @@
     <%- include('./partials/nav.ejs') %>
         <div class="wrapper">
             <div class="posts">
-                <a>
-                    <div class="posts__title">
-                        <%= post.title %>
+                <div class="posts-title">
+                    <a>
+                        <div class="posts-title__text">
+                            <%= post.title %>
+                        </div>
+                    </a>
+                    <div>
+                        <a href="/edit/<%= post.id %>">
+                            <button class="posts-title__edit">Редактировать</button>
+                        </a>
+                        <button class="posts-title__button" data-id="<%= post.id %>">X</button>
                     </div>
-                </a>
-                <button data-id="<%= post.id %>">X</button>
-                <a href="/edit/<%= post.id %>">
-                    <button>Редоктировать</button>
-                </a>
-                <div class="posts__text">
+                </div>
+                <div class="posts-text">
                     <span>
                         <%= post.text %>
                     </span>
                 </div>
-                <div class="posts__description">
+                <div class="posts-description">
                     <span>
                         <%= post.createdAt.toLocaleDateString() %>
                     </span><span>

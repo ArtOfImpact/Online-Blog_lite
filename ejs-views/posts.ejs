@@ -12,8 +12,15 @@
             margin: 0;
         }
 
+        a {
+            text-decoration: none;
+            color: burlywood;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
         header {
-            background-color: cadetblue;
+            background-color: #477250;
             display: flex;
             height: 100px;
             align-items: center;
@@ -24,6 +31,13 @@
 
         .menu {
             padding-right: 15px;
+            transition: 1s;
+        }
+
+        .menu:hover {
+            scale: 1.2;
+            padding-right: 25px;
+            padding-left: 25px;
         }
 
         .wrapper {
@@ -35,8 +49,11 @@
             font-size: 22px;
             background-color: brown;
             flex-direction: column;
-            padding-left: 50px;
-            padding-top: 50px;
+            padding: 50px;
+        }
+
+        .wrapper-title {
+            width: 700px;
         }
 
         .posts {
@@ -47,11 +64,29 @@
             width: 700px;
         }
 
-        .posts__text {
+        .posts-title {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .posts-title__text {
+            color: burlywood;
+        }
+
+        .posts-title__button {
+            height: 25px;
+            width: 25px;
+            background-color: #02020200;
+            border: 1px solid burlywood;
+            color: wheat;
+            cursor: pointer;
+        }
+
+        .posts-text {
             padding: 20px 0px;
         }
 
-        .posts__description {
+        .posts-description {
             display: flex;
             justify-content: space-between;
         }
@@ -61,20 +96,24 @@
 <body>
     <%- include('./partials/nav.ejs') %>
         <div class="wrapper">
-            <span>POSTS :</span>
+            <span class="wrapper-title">POSTS : <%= posts.length %></span>
             <% if (posts.length) { %>
                 <% posts.forEach(({ id,text, title,createdAt,author })=> { %>
                     <div class="posts">
-                        <a href="/post/<%= id %>">
-                            <div class="posts__title">
-                                <%= title %>
-                            </div>
-                        </a>
-                        <button data-id="<%= id %>">X</button>
-                        <div class="posts__text"><span>
+                        <div class="posts-title">
+                            <a href="/post/<%= id %>">
+                                <div class="posts-title__text">
+                                    <%= title %>
+                                </div>
+                            </a>
+                            <button class="posts-title__button" data-id="<%= id %>">X</button>
+                        </div>
+                        <div class="posts-text">
+                            <span>
                                 <%= text %>
-                            </span></div>
-                        <div class="posts__description">
+                            </span>
+                        </div>
+                        <div class="posts-description">
                             <span>
                                 <%= createdAt.toLocaleDateString() || 'Нет даты' %>
                             </span>
